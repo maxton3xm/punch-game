@@ -1,8 +1,12 @@
-import turtle
+import turtle, time
 
 t = turtle.Turtle()
 t.color("blue")
 t.speed(0)
+t.penup()
+dt = 0
+bullets = []
+last_time = 0
 
 screen = turtle.Screen()
 screen.tracer(0)
@@ -30,5 +34,29 @@ screen.onkey(move_backward, "Down")
 screen.onkey(turn_left, "Left")
 screen.onkey(turn_right, "Right")
 
+class bullet:
+    def __init__(self):
+        self.t = turtle.Turtle()
+        self.t.shape("circle")
+        self.t.shapesize(0.5, 0.5)
+        self.t.color("red")
+        self.t.penup()
+        self.t.speed(0)
+        self.t.goto(t.xcor(), t.ycor())
+        self.t.setheading(t.heading())
+        self.time = time.time()
+
+    def move(self):
+        self.t.fd(dt*100)
+        if self.time + 5 <= time.time():
+            self.t.hideturtle()
+            bullets.remove(self)
+            return
+
 while running:
-  screen.update()
+    curtime = time.time()
+    dt = curtime - last_time
+    last_time = curtime
+    for i in bullets:
+        i.move()
+    screen.update()
