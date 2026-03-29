@@ -23,6 +23,10 @@ def turn_left():
 
 def turn_right():
     t.right(15)
+
+def shoot():
+    b=bullet()
+    bullets.append(b)
 running = True
 screen.onkey(move_forward, "w")
 screen.onkey(move_backward, "s")
@@ -56,6 +60,7 @@ class bullet:
 while running:
     curtime = time.time()
     dt = curtime - last_time
+    
     last_time = curtime
     for i in bullets:
         i.move()
