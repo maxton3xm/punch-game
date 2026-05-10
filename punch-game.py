@@ -49,7 +49,8 @@ class bullet:
         self.t.goto(t.xcor(), t.ycor())
         self.t.setheading(t.heading())
         self.time = time.time()
-
+        bullet.speed(1)
+        
     def move(self):
         self.t.fd(dt*100)
         if self.time + 5 <= time.time():
