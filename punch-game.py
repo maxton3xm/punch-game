@@ -49,7 +49,7 @@ class bullet:
         self.t.goto(t.xcor(), t.ycor())
         self.t.setheading(t.heading())
         self.time = time.time()
-        bullet.speed(7)
+
         
     def move(self):
         self.t.fd(dt*100)
